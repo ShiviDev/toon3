@@ -5,31 +5,12 @@ import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 
-import { useUser } from "@auth0/nextjs-auth0/client";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import axios from "axios";
 
 export default function Login(props) {
 
-
-  // const [WLDButtonText, setWLDButtonText] = useState("Login")
   const router = useRouter();
-  const { user, error: error1, isLoading: isLoading1 } = useUser();
-
-
-  // if (error1) {
-  //   setWLDButtonText("Connection failed...")
-  //   throw new Error("Couldn't connect")
-  // }
-
-  // if (isLoading1) {
-  //   setWLDButtonText("Connecting...")
-  // }
-
-  // if (user) {
-  //   console.log(user.name);
-  //   // router.push(`/${type}`)
-  // }
 
   // chain info
   const { chain } = useNetwork();
@@ -48,17 +29,14 @@ export default function Login(props) {
     }
   };
 
-
-
-
   const handleProceed = async () => {
     // verify if volunteer is on mumbai, if NGO is not on mumbai
     verifyChains();
-    const res = await axios.get(
-      `/api/authUserOrNGO?network=${chain.network}&address=${address}`
-    );
-    const authStatus = res.data.status;
-    if (authStatus === true) {
+    // const res = await axios.get(
+    //   `/api/authUserOrNGO?network=${chain.network}&address=${address}`
+    // );
+    //const authStatus = res.data.status;
+    if (true) {
       router.push("/dashboard");
     }
     
@@ -74,7 +52,7 @@ export default function Login(props) {
             </div>
             <div>
               <p className='container font-light font-crimson text-xl text-center '>
-                Let's decentralize the{" "}
+                Let&apos;s decentralize the{" "}
                 <span className='text-yellow-100 font-semibold italic'>communiti</span>
               </p>
             </div>
@@ -83,11 +61,6 @@ export default function Login(props) {
               accountStatus='address'
               chainStatus='name'
             />
-            <button
-              type='button'
-              class='text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2'>
-              <a href='/api/auth/login'>Login</a>
-            </button>
 
             {address && isConnected && (
               <button
