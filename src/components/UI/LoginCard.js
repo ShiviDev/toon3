@@ -13,8 +13,6 @@ export default function Login(props) {
 
 
   // const [WLDButtonText, setWLDButtonText] = useState("Login")
-
-  const [type, setType] = useState("volunteer");
   const router = useRouter();
   const { user, error: error1, isLoading: isLoading1 } = useUser();
 
@@ -44,7 +42,7 @@ export default function Login(props) {
   const { address, isConnected } = useAccount();
 
   const verifyChains = () => {
-    if (type === "volunteer" && chain.network !== "maticmum") {
+    if (chain.network !== "maticmum") {
       // switch to mumbai
       switchNetwork?.(80001);
     }
@@ -52,38 +50,18 @@ export default function Login(props) {
 
 
 
-  const handleAuthProceed = () => {
 
-    if (type === "volunteer") {
-      if (type === "volunteer") {
-        router.push('/volunteer')
-      }
-      else {
-        router.push('/ngo')
-      }
-
-    }
-  }
   const handleProceed = async () => {
     // verify if volunteer is on mumbai, if NGO is not on mumbai
     verifyChains();
     const res = await axios.get(
-      `/api/authUserOrNGO?network=${chain.network}&address=${address}&type=${type}`
+      `/api/authUserOrNGO?network=${chain.network}&address=${address}`
     );
     const authStatus = res.data.status;
-    if (type === "volunteer") {
-      if (authStatus === true) {
-        router.push("/volunteer");
-      } else {
-        router.push("/onboarding/volunteer");
-      }
-    } else if (type === "ngo") {
-      if (authStatus === true) {
-        router.push("/ngo");
-      } else {
-        router.push("/onboarding/ngo");
-      }
+    if (authStatus === true) {
+      router.push("/dashboard");
     }
+    
   };
 
   return (
@@ -100,41 +78,13 @@ export default function Login(props) {
                 <span className='text-yellow-100 font-semibold italic'>communiti</span>
               </p>
             </div>
-            <div className='flex items-center border border-gray-200 rounded-xl w-full text-center'>
-              <button
-                id='bordered-radio-1'
-                value='volunteer'
-                name='type'
-                onClick={() => {
-                  setType("volunteer");
-                }}
-                className={
-                  selectedTypeStyles +
-                  "bg-yellow-500"
-                }>
-                Creator
-              </button>
-              |
-              <button
-                id='bordered-radio-1'
-                value='ngo'
-                name='type'
-                onClick={() => {
-                  setType("ngo");
-                }}
-                className={
-                  selectedTypeStyles + (type === "ngo" ? "bg-amber-500" : null)
-                }>
-                Subscriber
-              </button>
-            </div>
+           
             <ConnectButton
               accountStatus='address'
               chainStatus='name'
             />
             <button
               type='button'
-              onClick={handleAuthProceed}
               class='text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2'>
               <a href='/api/auth/login'>Login</a>
             </button>
@@ -144,8 +94,8 @@ export default function Login(props) {
                 id='bordered-radio-1'
                 onClick={handleProceed}
                 className={
-                  selectedTypeStyles +
-                  (type === "ngo" ? "bg-amber-500" : "bg-purple-500")
+                  selectedTypeStyles
+                 
                 }>
                 Proceed{" "}
                 {isLoading && pendingChainId === 80001 && " (switching)"}

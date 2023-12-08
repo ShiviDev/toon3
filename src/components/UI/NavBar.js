@@ -31,7 +31,7 @@ export default function NavBar() {
         <Image src="/toon3.png" alt="title" height="150" width="150">
             </Image>
             </a>
-        <div className='flex mr-10 items-center text-orange-500 font-light text-xl '>
+        <div className='flex mr-10 items-center font-bold text-black text-xl '>
           <a
             href='#'
             className='mr-6  hover:text-slate'>
