@@ -26,7 +26,14 @@ import { publicProvider } from "wagmi/providers/public";
 
 // <-------------  setting up rainbow kit ------------->
 const { chains, provider } = configureChains(
-  [arbitrumGoerli, polygonZkEvmTestnet, polygonMumbai, scrollSepolia, celo],
+  [
+    arbitrumGoerli,
+    polygonZkEvmTestnet,
+    polygonMumbai,
+    scrollSepolia,
+    celo,
+    baseGoerli,
+  ],
   [publicProvider()]
 );
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import "../../app/globals.css";
 import { useState, useEffect } from "react";
 import LoginCard from "./LoginCard";
+import Link from "next/link";
 
 export default function NavBar() {
   const [scrollY, setScrollY] = useState(0);
@@ -31,13 +32,23 @@ export default function NavBar() {
             : "transition  text-pastelBlack duration-300 ease-in-out"
         } items-center px-4 md:px-12 h-24 z-40`}
       >
-        <a>
-          <Image src="/toon3.png" alt="title" height="150" width="150"></Image>
-        </a>
-        <div className="flex mr-10 items-center font-bold text-black text-xl ">
-          <a href="#" className="mr-6  hover:text-slate">
-            About
+        <div className="flex flex-row">
+          <a className="mr-5">
+            <Image
+              src="/toon3.png"
+              alt="title"
+              height="150"
+              width="150"
+            ></Image>
           </a>
+          <Link
+            href={"/explore"}
+            className="mt-4 font-bold text-black text-xl  hover:text-slate"
+          >
+            Explore
+          </Link>
+        </div>
+        <div className="flex items-center font-bold text-black text-xl ">
           <LoginCard />
         </div>
       </header>
