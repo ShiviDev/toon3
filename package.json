@@ -17,6 +17,7 @@
     "@openzeppelin/contracts": "^4.8.2",
     "@pushprotocol/restapi": "^0.9.0",
     "@rainbow-me/rainbowkit": "^0.12.2",
+    "@tailwindcss/forms": "^0.5.7",
     "@zondax/filecoin-solidity": "^2.0.0-beta.1",
     "anon-aadhaar-react": "^0.1.14",
     "date-fns": "^2.29.3",

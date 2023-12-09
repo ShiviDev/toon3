@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  plugins: [require("@tailwindcss/forms")],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     ".src/app/**/*.{js,ts,jsx,tsx}",
@@ -21,7 +22,7 @@ module.exports = {
         space: ["Space Grotesk"],
         front: ["Univ", "monospace"],
         crimson: ["CrimsonPro", "serif"],
-        super: ["SuperComic","serif"]
+        super: ["SuperComic", "serif"],
       },
       fontSize: {
         sm: "0.8rem",
