@@ -43,12 +43,12 @@ export default function NavBar() {
           </a>
           <Link
             href={"/explore"}
-            className="mt-4 font-bold text-black text-xl  hover:text-slate"
+            className="mt-4 font-semibold text-black text-xl  hover:text-slate"
           >
             Explore
           </Link>
         </div>
-        <div className="flex items-center font-bold text-black text-xl ">
+        <div className="flex items-center font-semibold text-black text-xl ">
           <LoginCard />
         </div>
       </header>
