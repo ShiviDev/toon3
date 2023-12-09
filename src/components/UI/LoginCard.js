@@ -43,7 +43,7 @@ export default function Login(props) {
   };
 
   return (
-    <div className='flex flex-col justify-center space-y-8 items-center text-white'>
+    <div className='flex flex-col justify-center space-y-8 h-screen items-center text-white'>
       <div className='max-w-sm rounded overflow-hidden shadow-lg bg-black'>
         <div className='px-6 py-4 flex flex-col justify-center relative'>
           <div className='container mb-2 flex flex-col items-center py-3 gap-y-2 space-y-4'>
@@ -51,10 +51,6 @@ export default function Login(props) {
               <span className='font-bold font-heading text-4xl'>Join Us</span>
             </div>
             <div>
-              <p className='container font-light font-crimson text-xl text-center '>
-                Let&apos;s decentralize the{" "}
-                <span className='text-yellow-100 font-semibold italic'>communiti</span>
-              </p>
             </div>
            
             <ConnectButton
