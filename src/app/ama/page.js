@@ -6,33 +6,8 @@ import { AccessToken, Role } from "@huddle01/server-sdk/auth";
 
 import { useRoom } from "@huddle01/react/hooks";
 
-export const accessToken = new AccessToken({
-  apiKey,
-  roomId: roomId,
-  role: Role.HOST,
-  permissions: {
-    admin: true,
-    canConsume: true,
-    canProduce: true,
-    canProduceSources: {
-      cam: true,
-      mic: true,
-      screen: true,
-    },
-    canRecvData: true,
-    canSendData: true,
-    canUpdateMetadata: true,
-  },
-  options: {
-    metadata: {
-      // you can add any custom attributes here which you want to associate with the user
-      walletAddress: "axit.eth",
-    },
-  },
-});
-
 const Page = () => {
-    const [ roomId, setRoomId ] = useState('');
+  const [roomId, setRoomId] = useState("");
   const { joinRoom, leaveRoom } = useRoom({
     onJoin: () => {
       console.log("joined");
@@ -46,11 +21,10 @@ const Page = () => {
     const fetchData = async () => {
       const data = await createRoom();
       const { roomId } = data;
-      console.log(roomId);
+      setRoomId(roomId);
     };
 
-      fetchData();
-      setRoomId(roomId);
+    fetchData();
   }, [roomId]);
   return (
     <>
