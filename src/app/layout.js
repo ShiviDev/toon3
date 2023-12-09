@@ -8,18 +8,25 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 // <------------- rainbow kit imports ------------->
 import "@rainbow-me/rainbowkit/styles.css";
+import { scrollSepolia } from "../../extrachains";
 import {
   getDefaultWallets,
   RainbowKitProvider,
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { filecoinHyperspace, gnosis, polygonMumbai, scrollTestnet, optimismGoerli } from "wagmi/chains";
+import {
+  arbitrumGoerli,
+  polygonZkEvmTestnet,
+  polygonMumbai,
+  celo,
+  baseGoerli,
+} from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
 // <-------------  setting up rainbow kit ------------->
 const { chains, provider } = configureChains(
-  [filecoinHyperspace, gnosis, polygonMumbai, scrollTestnet, optimismGoerli],
+  [arbitrumGoerli, polygonZkEvmTestnet, polygonMumbai, scrollSepolia, celo],
   [publicProvider()]
 );
 
@@ -35,31 +42,31 @@ const wagmiClient = createClient({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <head>
         <link
-          href='https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css'
-          rel='stylesheet'
+          href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"
+          rel="stylesheet"
         />
       </head>
       <body>
-        
         <WagmiConfig client={wagmiClient}>
           <RainbowKitProvider
             coolMode
             chains={chains}
             theme={darkTheme({
-              accentColor: "#E09F1A",
+              accentColor: "#f7a34f",
               borderRadius: "large",
               fontStack: "system",
-            })}>
+            })}
+          >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               {children}
             </LocalizationProvider>
           </RainbowKitProvider>
-          </WagmiConfig>
+        </WagmiConfig>
 
-        <Script src='./TW-ELEMENTS-PATH/dist/js/index.min.js'></Script>
+        <Script src="./TW-ELEMENTS-PATH/dist/js/index.min.js"></Script>
       </body>
     </html>
   );
