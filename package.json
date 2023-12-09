@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@auth0/nextjs-auth0": "^3.1.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@hyperlane-xyz/sdk": "^1.2.3",
@@ -19,6 +18,7 @@
     "@pushprotocol/restapi": "^0.9.0",
     "@rainbow-me/rainbowkit": "^0.12.2",
     "@zondax/filecoin-solidity": "^2.0.0-beta.1",
+    "anon-aadhaar-react": "^0.1.14",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
     "dotenv": "^16.3.1",
