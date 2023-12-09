@@ -7,7 +7,7 @@ export async function createRoom() {
         }),
         headers: {
             "Content-Type": "application/json",
-            'x-api-key': `${process.env.HUDDLE_API_KEY}`,
+            'x-api-key': `v-vpDjt8KKwXoe_7FmscmNq6uOuFn3s_`,
         },
     });
     const data = await res.json();
