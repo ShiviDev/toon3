@@ -1,0 +1,39 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Creator
+    network: celo
+    source:
+      address: "0xDD465c41d7E542000f2de8892267A98f5759A186"
+      abi: Creator
+      startBlock: 21342469
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - addedBook
+        - addedChapter
+        - donationMade
+        - donationsWithDrawn
+        - userOnboarded
+        - userSubscribed
+      abis:
+        - name: Creator
+          file: ./abis/Creator.json
+      eventHandlers:
+        - event: addedBook(address,uint256)
+          handler: handleaddedBook
+        - event: addedChapter(address,uint256,uint256)
+          handler: handleaddedChapter
+        - event: donationMade(address,address,uint256)
+          handler: handledonationMade
+        - event: donationsWithDrawn(address,uint256)
+          handler: handledonationsWithDrawn
+        - event: userOnboarded(address,uint256)
+          handler: handleuserOnboarded
+        - event: userSubscribed(address,address)
+          handler: handleuserSubscribed
+      file: ./src/creator.ts

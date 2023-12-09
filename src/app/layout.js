@@ -23,6 +23,7 @@ import {
   baseGoerli,
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
+import NavBar from "../components/UI/NavBar";
 
 // <-------------  setting up rainbow kit ------------->
 const { chains, provider } = configureChains(
@@ -61,7 +62,14 @@ export default function RootLayout({ children }) {
             })}
           >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              {children}
+              <NavBar />
+              <section className="scroll-smooth " id="intro">
+                <div className="hero flex-row relative flex items-center justify-center h-screen overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-screen">
+                    {children}
+                  </div>
+                </div>
+              </section>
             </LocalizationProvider>
           </RainbowKitProvider>
         </WagmiConfig>
