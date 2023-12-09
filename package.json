@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@huddle01/react": "^1.0.0-alpha.58",
     "@hyperlane-xyz/sdk": "^1.2.3",
     "@mui/material": "^5.11.14",
     "@mui/x-date-pickers": "^6.0.3",

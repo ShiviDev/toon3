@@ -2,6 +2,7 @@
 
 import "./globals.css";
 import Script from "next/script";
+import { HuddleProvider, HuddleClient } from "@huddle01/react";
 
 import { LocalizationProvider } from "@mui/x-date-pickers";
 
@@ -14,7 +15,13 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { filecoinHyperspace, gnosis, polygonMumbai, scrollTestnet, optimismGoerli } from "wagmi/chains";
+import {
+  filecoinHyperspace,
+  gnosis,
+  polygonMumbai,
+  scrollTestnet,
+  optimismGoerli,
+} from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
 // <-------------  setting up rainbow kit ------------->
@@ -22,6 +29,15 @@ const { chains, provider } = configureChains(
   [filecoinHyperspace, gnosis, polygonMumbai, scrollTestnet, optimismGoerli],
   [publicProvider()]
 );
+
+const huddleClient = new HuddleClient({
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  options: {
+    activeSpeakers: {
+      size: 8,
+    },
+  },
+});
 
 const { connectors } = getDefaultWallets({
   appName: "My RainbowKit App",
@@ -43,7 +59,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        
         <WagmiConfig client={wagmiClient}>
           <RainbowKitProvider
             coolMode
@@ -53,11 +68,13 @@ export default function RootLayout({ children }) {
               borderRadius: "large",
               fontStack: "system",
             })}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              {children}
-            </LocalizationProvider>
+            <HuddleProvider client={huddleClient}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                {children}
+              </LocalizationProvider>
+            </HuddleProvider>
           </RainbowKitProvider>
-          </WagmiConfig>
+        </WagmiConfig>
 
         <Script src='./TW-ELEMENTS-PATH/dist/js/index.min.js'></Script>
       </body>
