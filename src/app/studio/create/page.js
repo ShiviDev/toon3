@@ -1,4 +1,3 @@
-// import NavBar from "../../../components/UI/NavBar";
 import "../../globals.css";
 
 async function getImageFromPrompt(body) {
@@ -51,7 +50,6 @@ export default async function Home() {
   console.log(response.body.id);
   return (
     <>
-      {/* <NavBar /> */}
       <h1>Hellow World!</h1>
       <p>{response.body.id}</p>
     </>
