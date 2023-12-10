@@ -8,10 +8,11 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 export default function Login() {
   const router = useRouter();
 
-  const { isConnected } = useAccount();
+  const { address, isConnected } = useAccount();
+
   useEffect(() => {
-    if (isConnected) {
-      router.push("/dashboard");
+    if (isConnected && address) {
+      router.push(`/dashboard/${address}`);
     }
   }, [isConnected, router]);
 

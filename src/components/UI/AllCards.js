@@ -58,7 +58,7 @@ export default function AllCards() {
   ];
   return (
     <>
-      <div className="w-[80%] mx-auto items-center grid grid-cols-3 gap-4 justify-center pt-36">
+      <div className="w-[80%] mx-auto items-center grid grid-cols-3 gap-4 justify-center pt-40">
         {comics.map((comic) => (
           <SinglePopular
             key={comic.name}

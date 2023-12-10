@@ -9,9 +9,10 @@ export default function Home() {
     <>
       <NavBar />
       <SecondaryNav />
-      <div className="absolute " style={{ top: "100px", marginTop: "10px" }}>
-        <h1 className="text-white">Hello world</h1>
-      </div>
+      <div
+        className="absolute "
+        style={{ top: "110px", marginTop: "10px" }}
+      ></div>
     </>
   );
 }

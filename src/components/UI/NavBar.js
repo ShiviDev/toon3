@@ -33,14 +33,14 @@ export default function NavBar() {
         } items-center px-4 md:px-12 h-24 z-40`}
       >
         <div className="flex flex-row">
-          <a className="mr-5">
+          <Link href={"/"} className="mr-5">
             <Image
               src="/toon3.png"
               alt="title"
               height="150"
               width="150"
             ></Image>
-          </a>
+          </Link>
           <Link
             href={"/explore"}
             className="mt-4 font-semibold text-black text-xl  hover:text-slate"
@@ -48,7 +48,10 @@ export default function NavBar() {
             Explore
           </Link>
         </div>
-        <div className="flex items-center font-semibold text-black text-xl ">
+        <div className="flex gap-4 items-center font-semibold text-black text-xl ">
+          <Link href={"/dashboard"}>
+            <div>Dashboard</div>
+          </Link>
           <LoginCard />
         </div>
       </header>
