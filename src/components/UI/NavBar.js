@@ -5,9 +5,11 @@ import "../../app/globals.css";
 import { useState, useEffect } from "react";
 import LoginCard from "./LoginCard";
 import Link from "next/link";
+import { useAccount } from "wagmi";
 
 export default function NavBar() {
   const [scrollY, setScrollY] = useState(0);
+  const { isConnected } = useAccount();
 
   function handleScroll() {
     setScrollY(window.pageYOffset);
@@ -41,17 +43,22 @@ export default function NavBar() {
               width="150"
             ></Image>
           </Link>
+          {isConnected ? (
+            <Link
+              href={"/dashboard"}
+              className="mt-4 font-semibold text-black text-xl  hover:text-slate mr-4"
+            >
+              <div>Dashboard</div>
+            </Link>
+          ) : null}
           <Link
             href={"/explore"}
-            className="mt-4 font-semibold text-black text-xl  hover:text-slate"
+            className="mt-4 font-semibold text-black text-xl  hover:text-slate ml-4"
           >
             Explore
           </Link>
         </div>
         <div className="flex gap-4 items-center font-semibold text-black text-xl ">
-          <Link href={"/dashboard"}>
-            <div>Dashboard</div>
-          </Link>
           <LoginCard />
         </div>
       </header>

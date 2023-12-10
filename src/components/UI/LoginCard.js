@@ -12,7 +12,7 @@ export default function Login() {
 
   useEffect(() => {
     if (isConnected && address) {
-      router.push(`/dashboard/${address}`);
+      console.log("user connected!");
     }
   }, [isConnected, router]);
 

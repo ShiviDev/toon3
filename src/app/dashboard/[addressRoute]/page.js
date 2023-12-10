@@ -4,9 +4,10 @@ import NavBar from "../../../components/UI/NavBar";
 import { useAccount, useNetwork, useContractEvent } from "wagmi";
 import "../../globals.css";
 import { useRouter } from "next/navigation";
-import { useContractWrite, useContractRead } from "wagmi";
+import { useContractWrite, useContractRead, parseEther } from "wagmi";
 import BookCardProfile from "@/components/UI/BookCardProfile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import abiJSON from "../../../../contracts/abi.json";
 
 export default function Home({ params: { addressRoute } }) {
   // const { address, isConnected } = useAccount();
@@ -20,28 +21,8 @@ export default function Home({ params: { addressRoute } }) {
         "10 normal men turn into vampires by night that cause them to go on a killing frenzy. But that doesn't deter the 10 hangry women defending the town, who venture out fearlessly...",
       year: 2004,
     },
-    {
-      image: "/explore/storycard.png",
-      title: "Hangry Maidens",
-      description:
-        "10 normal men turn into vampires by night that cause them to go on a killing frenzy. But that doesn't deter the 10 hangry women defending the town, who venture out fearlessly...",
-      year: 2004,
-    },
-    {
-      image: "/explore/storycard.png",
-      title: "Hangry Maidens",
-      description:
-        "10 normal men turn into vampires by night that cause them to go on a killing frenzy. But that doesn't deter the 10 hangry women defending the town, who venture out fearlessly...",
-      year: 2004,
-    },
-    {
-      image: "/explore/storycard.png",
-      title: "Hangry Maidens",
-      description:
-        "10 normal men turn into vampires by night that cause them to go on a killing frenzy. But that doesn't deter the 10 hangry women defending the town, who venture out fearlessly...",
-      year: 2004,
-    },
   ]);
+  const [amount, setAmount] = useState(0);
 
   const {
     data: dataWithdraw,
@@ -49,18 +30,60 @@ export default function Home({ params: { addressRoute } }) {
     isSuccess: isSuccessWithdraw,
     write: writeWithdraw,
   } = useContractWrite({
-    address: "0xecb504d39723b0be0e3a9aa33d646642d1051ee1",
-    abi: wagmigotchiABI,
-    functionName: "withdraw",
+    address:
+      process.env.NEXT_PUBLIC_CELO_CONTRACT_ADDRESS ||
+      "0xDD465c41d7E542000f2de8892267A98f5759A186",
+    abi: abiJSON,
+    functionName: "withdrawDonations",
+    chainId: 44787, // celo
+  });
+
+  const {
+    data: dataDonate,
+    isLoading: isLoadingDonate,
+    isSuccess: isSuccessDonate,
+    write: writeDonate,
+  } = useContractWrite({
+    address:
+      process.env.NEXT_PUBLIC_CELO_CONTRACT_ADDRESS ||
+      "0xDD465c41d7E542000f2de8892267A98f5759A186",
+    abi: abiJSON,
+    functionName: "dontateToCreator",
+    chainId: 44787, // celo
+  });
+
+  const {
+    data: dataUser,
+    isLoading: isLoadingUser,
+    isSuccess: isSuccessUser,
+  } = useContractRead({
+    address:
+      process.env.NEXT_PUBLIC_CELO_CONTRACT_ADDRESS ||
+      "0xDD465c41d7E542000f2de8892267A98f5759A186",
+    abi: abiJSON,
+    functionName: "getUserDetails",
+    args: [addressRoute],
+    chainId: 44787, // celo
+  });
+
+  console.log("dataUser", dataUser);
+  console.log("user address", addressRoute);
+
+  useEffect(() => {
+    if (dataUser && typeof dataUser != "undefined") setUsersWork(dataUser);
   });
 
   function getUsersMetadata() {
     // write();
   }
 
-  function handleDonate() {}
+  function handleDonate() {
+    writeDonate({ args: [], from: address, value: parseEther("0.01") });
+  }
 
-  function handleWithdraw() {}
+  function handleWithdraw() {
+    writeWithdraw({ args: [], from: address, value: parseEther("0.01") });
+  }
 
   if (addressRoute.length === 42)
     return (
