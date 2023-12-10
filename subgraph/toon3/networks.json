@@ -1,0 +1,16 @@
+{
+  "celo": {
+    "Creator": {
+      "address": "0xDD465c41d7E542000f2de8892267A98f5759A186",
+      "startBlock": 21342469
+    }
+  }
+},
+{
+  "arbitrum-goerli": {
+    "Creator": {
+      "address": "0xdfB80Ddf39B7b09DC764b98b58074C3bC72Ff977",
+      "startBlock": 58496571
+    }
+  }
+}
