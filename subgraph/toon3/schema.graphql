@@ -1,0 +1,55 @@
+type addedBook @entity(immutable: true) {
+  id: Bytes!
+  creator: Bytes! # address
+  bookId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type addedChapter @entity(immutable: true) {
+  id: Bytes!
+  creator: Bytes! # address
+  bookId: BigInt! # uint256
+  chapterId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type donationMade @entity(immutable: true) {
+  id: Bytes!
+  creator: Bytes! # address
+  trustee: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type donationsWithDrawn @entity(immutable: true) {
+  id: Bytes!
+  creator: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type userOnboarded @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  timestamp: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type userSubscribed @entity(immutable: true) {
+  id: Bytes!
+  creator: Bytes! # address
+  subscriber: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
