@@ -65,7 +65,10 @@ export default function PopularCards() {
   ];
   return (
     <section>
-      <div className="w-[80%] mx-auto items-center flex flex-row justify-center pt-36">
+      <div
+        className="w-[80%] mx-auto items-center flex flex-row justify-center pt-36"
+        style={{ overflow: "auto" }}
+      >
         <div className="mt-8 w-1/2 flex flex-row">
           <div className="flex w-1/2 flex-col  pr-10 ">
             <Image
