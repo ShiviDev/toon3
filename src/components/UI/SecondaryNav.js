@@ -13,24 +13,24 @@ export default function SecondaryNav() {
         className="w-full fixed flex justify-center items-center"
         style={{ top: "95px", background: "#f7a34f", height: "3.3rem" }}
       >
-        <div class="text-sm  text-center ">
-          <div class="flex flex-row -mb-px">
-            <div class="me-2">
+        <div className="text-sm  text-center ">
+          <div className="flex flex-row -mb-px">
+            <div className="me-2">
               <button
                 onClick={() => {
                   setCurrentTab("POPULAR");
                 }}
-                class={currentTab === "POPULAR" ? Selected : unSelected}
+                className={currentTab === "POPULAR" ? Selected : unSelected}
               >
                 POPULAR
               </button>
             </div>
-            <div class="me-2">
+            <div className="me-2">
               <button
                 onClick={() => {
                   setCurrentTab("ALL");
                 }}
-                class={currentTab === "ALL" ? Selected : unSelected}
+                className={currentTab === "ALL" ? Selected : unSelected}
                 style={{ minWidth: "85px" }}
               >
                 ALL

@@ -10,6 +10,7 @@ import { useAccount } from "wagmi";
 export default function NavBar() {
   const [scrollY, setScrollY] = useState(0);
   const { isConnected, address } = useAccount();
+  const { isConnected, address } = useAccount();
 
   function handleScroll() {
     setScrollY(window.pageYOffset);
@@ -45,18 +46,18 @@ export default function NavBar() {
           </Link>
           {isConnected ? (
             <>
-              <Link
-                href={`/dashboard/${address}`}
-                className="mt-4 font-semibold text-black text-xl  hover:text-slate mr-4"
-              >
-                <div>Dashboard</div>
-              </Link>
-              <Link
-                href={`/studio/create`}
-                className="mt-4 font-semibold text-black text-xl  hover:text-slate mr-4 ml-4"
-              >
-                <div>Create</div>
-              </Link>
+            <Link
+              href={`/dashboard/${address}`}
+              className="mt-4 font-semibold text-black text-xl  hover:text-slate mr-4"
+            >
+              <div>Dashboard</div>
+            </Link>
+            <Link
+              href={"/studio/create"}
+              className="mt-4 font-semibold text-black text-xl  hover:text-slate mr-4"
+            >
+              <div>Create</div>
+            </Link>
             </>
           ) : null}
           <Link
